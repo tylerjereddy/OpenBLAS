@@ -12,6 +12,7 @@ else ()
     test_axpy.c
     test_dsdot.c
     test_swap.c
+    test_kernel_regress.c
   )
 endif ()
 

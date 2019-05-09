@@ -45,3 +45,32 @@ jobs:
             make -C utest $COMMON_FLAGS $BTYPE" > Dockerfile
       docker build .
     displayName: Run manylinux1 docker build
+- job: Intel_SDE_skx
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  - script: |
+      sudo apt-get -y install gfortran
+    displayName: 'install gfortran'
+  - script: |
+      mkdir SDE && cd SDE
+      wget -O sde-external-8.35.0-2019-03-11-lin.tar.bz2 https://www.dropbox.com/s/fopsnzj67572sj5/sde-external-8.35.0-2019-03-11-lin.tar.bz2?dl=0
+      tar -xjvf sde-external-8.35.0-2019-03-11-lin.tar.bz2
+      cd ..
+    displayName: 'Download / Install Intel SDE'
+  - script: |
+      # standard OpenBLAS build
+      make QUIET_MAKE=1 $COMMON_FLAGS $BTYPE
+    displayName: 'Build OpenBLAS'
+    env:
+       COMMON_FLAGS: 'DYNAMIC_ARCH=1 NUM_THREADS=32'
+       BTYPE: 'BINARY=64'
+       CC: gcc
+  - bash: |
+      # make can change directories for testing
+      # so use an absolute path with SDE
+      SDEDIR=`pwd`
+      # probe runtime SkylakeX kernel behavior
+      # under emulation
+      $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/sde64 -cpuid_in $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/misc/cpuid/skx/cpuid.def -- make -C utest DYNAMIC_ARCH=1 NUM_THREADS=32 BINARY=64
+    displayName: 'Run Intel SDE SkylakeX tests'
