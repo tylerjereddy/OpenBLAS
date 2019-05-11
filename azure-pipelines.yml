@@ -72,5 +72,5 @@ jobs:
       SDEDIR=`pwd`
       # probe runtime SkylakeX kernel behavior
       # under emulation
-      $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/sde64 -cpuid_in $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/misc/cpuid/skx/cpuid.def -- make -C utest DYNAMIC_ARCH=1 NUM_THREADS=32 BINARY=64
+      $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/sde64 -cpuid_in $SDEDIR/SDE/sde-external-8.35.0-2019-03-11-lin/misc/cpuid/skx/cpuid.def -- make -j 1 -C utest DYNAMIC_ARCH=1 NUM_THREADS=32 BINARY=64
     displayName: 'Run Intel SDE SkylakeX tests'
