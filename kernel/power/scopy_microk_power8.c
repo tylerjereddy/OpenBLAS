@@ -107,6 +107,6 @@ static void scopy_kernel_32 (long n, float *x, float *y)
        "b" (112)	// 11
      :
        "cr0",
-       "vs40","vs41","vs42","vs43","vs44","vs45","vs46","vs47"
+       "v8","v9","v10","v11","v12","v13","v14","v15"
      );
 }

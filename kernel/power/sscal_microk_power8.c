@@ -133,8 +133,8 @@ static void sscal_kernel_16 (long n, float *x, float alpha)
        "b" (112)	// 10
      :
        "cr0",
-       "vs32","vs33","vs34","vs35","vs36","vs37","vs38","vs39",
-       "vs40","vs41","vs42","vs43","vs44","vs45","vs46","vs47"
+       "v0","v1","v2","v3","v4","v5","v6","v7",
+       "v8","v9","v10","v11","v12","v13","v14","v15"
      );
 }
 
@@ -169,7 +169,7 @@ static void sscal_kernel_16_zero (long n, float *x)
        "=m" (*x),
        "+r" (n),	// 1
        "+b" (x),	// 2
-       "=wa" (t0)	// 3
+       "=v" (t0)	// 3
      :
        "b" (16),	// 4
        "b" (32),	// 5

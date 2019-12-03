@@ -102,7 +102,7 @@ static void sswap_kernel_32 (long n, float *x, float *y)
        "b" (112)	// 11
      :
        "cr0",
-       "vs32","vs33","vs34","vs35","vs36","vs37","vs38","vs39",
-       "vs40","vs41","vs42","vs43","vs44","vs45","vs46","vs47"
+       "v0","v1","v2","v3","v4","v5","v6","v7",
+       "v8","v9","v10","v11","v12","v13","v14","v15"
      );
 }

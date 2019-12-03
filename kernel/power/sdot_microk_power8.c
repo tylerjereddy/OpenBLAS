@@ -150,10 +150,10 @@ static float sdot_kernel_16 (long n, float *x, float *y)
        "+r" (n),	// 1
        "+b" (x),	// 2
        "+b" (y),	// 3
-       "=wa" (t0),	// 4
-       "=wa" (t1),	// 5
-       "=wa" (t2),	// 6
-       "=wa" (t3)	// 7
+       "=v" (t0),	// 4
+       "=v" (t1),	// 5
+       "=v" (t2),	// 6
+       "=v" (t3)	// 7
      :
        "m" (*x),
        "m" (*y),
@@ -166,9 +166,9 @@ static float sdot_kernel_16 (long n, float *x, float *y)
        "b" (112)	// 16
      :
        "cr0",
-       "vs32","vs33","vs34","vs35","vs36","vs37","vs38","vs39",
-       "vs40","vs41","vs42","vs43","vs44","vs45","vs46","vs47",
-       "vs48","vs49","vs50","vs51"
+       "v0","v1","v2","v3","v4","v5","v6","v7",
+       "v8","v9","v10","v11","v12","v13","v14","v15",
+       "v16","v17","v18","v19"
      );
 
   return dot;
